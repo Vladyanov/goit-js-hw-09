@@ -3,6 +3,7 @@ const refs = {
   stopBtn: document.querySelector('[data-stop]'),
 };
 
+refs.stopBtn.disabled = true;
 let isActive = false;
 let timerId = null;
 
