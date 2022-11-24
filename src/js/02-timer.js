@@ -39,14 +39,19 @@ const timer = {
     const intervalId = setInterval(() => {
       const currentTime = Date.now();
       const deltaTime = startTime - currentTime;
-      const { days, hours, minutes, seconds } = convertMs(deltaTime);
-      if (deltaTime === 0) {
+      if (deltaTime <= 0) {
         clearInterval(intervalId);
+        return;
       }
+      const { days, hours, minutes, seconds } = convertMs(deltaTime);
       refs.days.textContent = days;
       refs.hours.textContent = hours;
       refs.mins.textContent = minutes;
       refs.secs.textContent = seconds;
+      if (deltaTime < 1) {
+        clearInterval(intervalId);
+        return;
+      }
     }, 1000);
   },
 };
